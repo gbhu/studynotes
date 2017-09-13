@@ -3,9 +3,12 @@
 
 # 1、shiroStudy
 shiroStudy 这个项目参照 http://www.sojson.com/shiro   主要用于学习和掌握Apache Shiro 框架，具体内容介绍参照https://github.com/baichengzhou/SpringMVC-Mybatis-Shiro-redis-0.2
+### 注：该项目涉及的知识点包括：spring ,spring mvc，mysql，mybatis，Shiro，redis，Freemarker，jsp
 
 # 2、AngularjsAndAngle 
-AngularjsAndAngle 这个项目是用于学习Angle Admin Template 这套前端UI 框架，抽离出来的。
+AngularjsAndAngle 这个项目是用于学习Angle Admin Template 这套前端UI框架，从原来项目中抽离出来的。
+### 注：该项目涉及的知识点包括：angularjs 1.0x，bootstrap3.x
+
 ## Angle Admin Template 简介
 Angle Admin Template是一款后台管理模板，使用Bootstrap3.x作为界面框架，支持响应式布局。Angle包含JQuery和AngularJS两种js框架，方便SPA的使用，并且该模板提供了ASP.NET MVC、Angular、Rails等项目模板以及相应的种子模板，方便使用。
 该项目只是Angle Admin Template中的一部分即基于angular 1.x分离出来的内容。
@@ -15,6 +18,7 @@ master：该目录是gulp文件编译的原文件。
 server：该目录存放的是页面模拟页面请求所需要的json文件。
 vendor：该目录存放的是页面所需要的三方控件。
 index.html:项目启动加载的第一个页面。
+
 
 
 

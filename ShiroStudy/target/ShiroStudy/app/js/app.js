@@ -10,7 +10,7 @@
  */
 
 // APP START
-// ----------------------------------- 
+// -----------------------------------
 
 (function() {
     'use strict';
@@ -602,7 +602,7 @@
       // Set here the base of the relative path
       // for all app views
       function basepath(uri) {
-        return 'app/views/' + uri;
+        return 'app/' + uri;
       }
 
       // Generates a resolve object by passing script names
@@ -683,19 +683,24 @@
           .state('app', {
               url: '/app',
               abstract: true,
-              templateUrl: helper.basepath('app.html'),
+              templateUrl: helper.basepath('views/app.html'),
               resolve: helper.resolveFor('modernizr', 'icons')
           })
           .state('app.singleview', {
               url: '/singleview',
               title: 'Single View',
-              templateUrl: helper.basepath('singleview.html')
+              templateUrl: helper.basepath('views/singleview.html')
           })
           .state('app.submenu', {
               url: '/submenu',
               title: 'Submenu',
-              templateUrl: helper.basepath('submenu.html')
+              templateUrl: helper.basepath('views/submenu.html')
           })
+            .state('app.login', {
+                url: '/login',
+                title: 'login',
+                templateUrl: helper.basepath('pages/login.html')
+            })
           // 
           // CUSTOM RESOLVES
           //   Add your own resolves properties
@@ -1683,6 +1688,63 @@
 
         function activate() {
           $log.log('I\'m a line from custom.js');
+        }
+    }
+})();
+
+/**=========================================================
+ * Module: access-login.js
+ * Demo for login api
+ =========================================================*/
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.utils')
+        .controller('LoginFormController', LoginFormController);
+
+    LoginFormController.$inject = ['$http', '$state'];
+    function LoginFormController($http, $state) {
+        var vm = this;
+
+        activate();
+
+        ////////////////
+
+        function activate() {
+            // bind here all data from the form
+            vm.account = {};
+            // place the message if something goes wrong
+            vm.authMsg = '';
+
+            vm.login = function() {
+                vm.authMsg = '';
+
+                if(vm.loginForm.$valid) {
+
+                    $http
+                        .post('/loginAdmin', {name: vm.account.username, password: vm.account.password})
+                        .then(function(response) {
+                            // assumes if ok, response is an object with some data, if not, a string with error
+                            // customize according to your api
+                            if ( !response) {
+                                vm.authMsg = 'Incorrect credentials.';
+                            }else{
+                                window.location.href ="#/app/singleview";
+                                //$state.go('app.singleview');
+                            }
+                        }, function() {
+                            vm.authMsg = 'Server Request Error';
+                        })
+                }
+                else {
+                    // set as dirty if the user click directly to login so we show the validation messages
+                    /*jshint -W106*/
+                    vm.loginForm.account_name.$dirty = true;
+                    vm.loginForm.account_password.$dirty = true;
+                }
+            };
         }
     }
 })();

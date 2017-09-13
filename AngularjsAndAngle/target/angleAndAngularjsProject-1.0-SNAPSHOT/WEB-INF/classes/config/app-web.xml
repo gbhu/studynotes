@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- com.yummy -->
+	<context:component-scan base-package="com.yummy" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<aop:aspectj-autoproxy proxy-target-class="false" />
+
+	<mvc:resources location="html" mapping="*.html" />
+	<mvc:resources location="jsp" mapping="*.jsp" />
+	<mvc:resources location="js" mapping="*.js" />
+	<mvc:resources location="css" mapping="*.css" />
+	<mvc:resources location="json" mapping="*.json" />
+	<mvc:resources location="xml" mapping="*.xml" />
+	<mvc:resources location="woff2" mapping="*.woff2" />
+	<mvc:resources location="woff" mapping="*.woff" />
+	<mvc:resources location="ttf" mapping="*.ttf" />
+
+	<mvc:resources location="/app/css/" mapping="/app/css/**" />
+
+	<mvc:resources location="/app/img/" mapping="/app/img/**" />
+	<mvc:resources location="/app/pages/" mapping="/app/pages/**" />
+	<mvc:resources location="/server/" mapping="/server/**" />
+
+	<mvc:resources location="/app/js/" mapping="/app/js/**" />
+	<mvc:resources location="/vendor/" mapping="/vendor/**" />
+	<mvc:resources location="/app/views/" mapping="/app/views/**" />
+	<mvc:resources location="/app/i18n/" mapping="/app/i18n/**" />
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/" />
+		<property name="suffix" value="" />
+		<property name="contentType" value="text/html;charset=UTF8" />
+	</bean>
+
+
+	<!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8" />
+		<!-- 指定所上传文件的总大小不能超过10MB。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->
+		<property name="maxUploadSize" value="10000000" />
+	</bean>
+
+	<!-- SpringMVC在超出上传文件限制时，会抛出org.springframework.web.multipart.MaxUploadSizeExceededException -->
+	<!-- 该异常是SpringMVC在检查上传的文件信息时抛出来的，而且此时还没有进入到Controller方法中 -->
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<!-- 遇到MaxUploadSizeExceededException异常时，自动跳转到/WEB-INF/jsp/error_fileupload.jsp页面 -->
+				<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">/template/pages/404.html</prop>
+				<prop key="java.lang.exception">template/pages/404.html</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>

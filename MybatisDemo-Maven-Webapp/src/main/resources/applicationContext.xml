@@ -14,6 +14,12 @@
     http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
     http://www.springframework.org/schema/util 
     http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+
+
+	<!-- 自动扫描 -->
+	<context:component-scan base-package="com.yummy" />
+
 	<!-- druid连接池 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		destroy-method="close">
@@ -37,32 +43,22 @@
 		<property name="filters" value="stat" />
 	</bean>
 
-	<!-- dbcp连接池处理 -->
-	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" 
-		destroy-method="close"> <property name="driverClassName" value="com.mysql.jdbc.Driver" 
-		/> <property name="url" value="jdbc:mysql://localhost:3306/mybatis?characterEncoding=utf8" 
-		/> <property name="username" value="root" /> <property name="password" value="123456" 
-		/> maxActive: 最大连接数量 <property name="maxActive" value="150"/> minIdle: 最小空闲连接 
-		<property name="minIdle" value="5"/> maxIdle: 最大空闲连接 <property name="maxIdle" 
-		value="20"/> initialSize: 初始化连接 <property name="initialSize" value="30"/> 
-		连接被泄露时是否打印 <property name="logAbandoned" value="true"/> removeAbandoned: 
-		是否自动回收超时连接 <property name="removeAbandoned" value="true"/> removeAbandonedTimeout: 
-		超时时间(以秒数为单位) <property name="removeAbandonedTimeout" value="10"/> maxWait: 
-		超时等待时间以毫秒为单位 1000等于60秒 <property name="maxWait" value="1000"/> 在空闲连接回收器线程运行期间休眠的时间值,以毫秒为单位. 
-		<property name="timeBetweenEvictionRunsMillis" value="10000"/> 在每次空闲连接回收器线程(如果有)运行时检查的连接数量 
-		<property name="numTestsPerEvictionRun" value="10"/> 1000 * 60 * 30 连接在池中保持空闲而不被空闲连接回收器线程 
-		<property name="minEvictableIdleTimeMillis" value="10000"/> </bean> -->
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!--dataSource属性指定要用到的连接池 -->
 		<property name="dataSource" ref="dataSource" />
-		<!--configLocation属性指定mybatis的核心配置文件 -->
-		<property name="configLocation" value="mybatis-config.xml" />
+		<!-- 自动扫描mapping.xml文件 -->
+		<property name="mapperLocations" value="classpath:mybatis/*.xml"></property>
 	</bean>
-	<bean id="personMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<!--mapperInterface属性指定映射器接口，用于实现此接口并生成映射器对象 -->
-		<property name="mapperInterface" value="com.yummy.dao.PersonMapper" />
-		<!--sqlSessionFactory属性指定要用到的SqlSessionFactory实例 -->
-		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.yummy.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>
+
+	<!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+	<bean id="transactionManager"
+		  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
 	</bean>
 </beans> 

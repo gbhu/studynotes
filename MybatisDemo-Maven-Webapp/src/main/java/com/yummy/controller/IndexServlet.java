@@ -1,7 +1,6 @@
-package com.yummy.action;
+package com.yummy.controller;
 
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;

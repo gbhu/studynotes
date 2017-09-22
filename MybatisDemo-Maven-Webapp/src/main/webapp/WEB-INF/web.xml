@@ -6,7 +6,7 @@
 	version="2.4">
 	<servlet>
 		<servlet-name>IndexServlet</servlet-name>
-		<servlet-class>com.yummy.action.IndexServlet</servlet-class>
+		<servlet-class>com.yummy.controller.IndexServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -47,29 +47,39 @@
 		<url-pattern>/druid/*</url-pattern>
 	</servlet-mapping>
 	<!-- 配置 Druid 监控信息显示页面 end -->
-	
-	
-	<!-- spring mvc 配置 -->
-	
+
+
+	<!-- Spring和mybatis的配置文件 -->
 	<context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>classpath*:config/applicationContext.xml</param-value>
+    <param-value>classpath*:applicationContext.xml</param-value>
   </context-param>
-  <listener>
+	<!-- Spring监听器 -->
+	<listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
-  <listener>
+	<!-- 防止Spring内存溢出监听器 -->
+	<listener>
     <listener-class>
             org.springframework.web.context.ContextCleanupListener</listener-class>
   </listener>
-  <servlet>
-    <servlet-name>mvc-dispatcher</servlet-name>
-    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>mvc-dispatcher</servlet-name>
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
-  
+	<!-- Spring MVC servlet -->
+
+	<servlet>
+		<servlet-name>SpringMVC</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring-mvc.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SpringMVC</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>/index.jsp</welcome-file>
+	</welcome-file-list>
+
 </web-app>

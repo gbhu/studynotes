@@ -17,8 +17,9 @@ public class HelloController {
 
     @Autowired
     PersonService personService;
+
     @RequestMapping("/getPerson")
-    public Person findById(HttpServletRequest request, Model model){
+    public Person findById(HttpServletRequest request){
        return personService.findById( request.getParameter("id"));
     }
 

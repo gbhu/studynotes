@@ -3,22 +3,22 @@
 # 1、mybatispractice
 mybatispractice该项目是mybatis+spring+springmvc项目，从完善的环境配置。
 ### 注：该项目涉及的知识点包括：
-####spring 框架
-####mysql 数据库
-####mybatis orm框架
-####p6spy sql监控框架
-####log4j 日志框架
-####Angle 比较流行的前端框架 具体请查看自项目AngularjsAndAngle
+#### spring 框架
+#### mysql 数据库
+#### mybatis orm框架
+#### p6spy sql监控框架
+#### log4j 日志框架
+#### Angle 比较流行的前端框架 具体请查看自项目AngularjsAndAngle
 
 # 2、shiroStudy
 shiroStudy 这个项目参照 http://www.sojson.com/shiro   主要用于学习和掌握Apache Shiro 框架，具体内容介绍参照https://github.com/baichengzhou/SpringMVC-Mybatis-Shiro-redis-0.2
 ### 注：该项目涉及的知识点包括：
-####spring 框架
-####mysql 数据库
-####mybatis orm框架
-####Shiro Java安全框架
-####redis nosql框架之一
-####Freemarker 模板引擎
+#### spring 框架
+#### mysql 数据库
+#### mybatis orm框架
+#### Shiro Java安全框架
+#### redis nosql框架之一
+#### Freemarker 模板引擎
 
 # 3、AngularjsAndAngle 
 AngularjsAndAngle 这个项目是用于学习Angle Admin Template 这套前端UI框架，从原来项目中抽离出来的。

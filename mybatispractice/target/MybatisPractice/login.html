@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="angle">
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <meta name="description" content="Bootstrap Admin App + jQuery">
+   <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
+   <title>首创置业营销管理系统-系统登录</title>
+   <!-- =============== VENDOR STYLES ===============-->
+   <!-- FONT AWESOME-->
+   <link rel="stylesheet" href="assets/fontawesome/css/font-awesome.min.css">
+   <!-- SIMPLE LINE ICONS-->
+   <link rel="stylesheet" href="assets/simple-line-icons/css/simple-line-icons.css">
+   <!-- =============== BOOTSTRAP STYLES ===============-->
+   <link rel="stylesheet" href="z-login/bootstrap.css" id="bscss">
+   <!-- =============== APP STYLES ===============-->
+  <!--  <link rel="stylesheet" href="z-login/app.css" id="maincss"> -->
+   <link rel="stylesheet" href="z-login/login.css" id="maincss">
+</head>
+
+<body class="login-body">
+   <div class="wrapper">
+      <div class="block-center mt-xl wd-xl">
+         <!-- START panel-->
+         <div class="panel panel-dark panel-flat">
+            <div class="panel-heading text-center">
+               <a href="#">
+                  <img src="img/logo.png" alt="Image" class="block-center img-rounded">
+               </a>
+            </div>
+            <div class="panel-body">
+               <p class="text-center pv">用户登录</p>
+               <div  data-parsley-validate=""  novalidate="" class="mb-lg" >
+                  <div class="form-group has-feedback">
+                     <input id="exampleInputEmail1" name="account" type="text" autocomplete="off" required class="form-control">
+                     <span class="fa fa-envelope form-control-feedback text-muted"></span>
+                  </div>
+                  <div class="form-group has-feedback">
+                     <input id="exampleInputPassword1" name="password" type="password" placeholder="Password" required class="form-control">
+                     <span class="fa fa-lock form-control-feedback text-muted"></span>
+                  </div>
+
+                  <button  class="btn btn-block btn-primary mt-lg"><a ng-href="#app/dashboard">登录</a></button>
+               </div>
+           </div>
+         </div>
+         <!-- END panel-->
+         <div class="p-lg text-center">
+            <span>&copy;</span>
+            <span>2015</span>
+            <span>-</span>
+            <span>GrandInsight</span>
+            <br>
+            <span>营销管理系统</span>
+         </div>
+      </div>
+   </div>
+   <!-- =============== VENDOR SCRIPTS ===============-->
+   <!-- MODERNIZR-->
+   <script src="assets/modernizr/modernizr.js"></script>
+   <!-- JQUERY-->
+   <script src="assets/jquery/dist/jquery.js"></script>   
+   
+</body>
+
+</html>

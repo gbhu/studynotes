@@ -7,9 +7,10 @@
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper" />
-      <secret-storage>memory</secret-storage>
       <user-name>root</user-name>
+      <introspection-schemas>*:myapp</introspection-schemas>
       <resolve-scope>myapp:</resolve-scope>
+      <unqualified-resolve-schemas>myapp:</unqualified-resolve-schemas>
     </data-source>
     <data-source name="hibernate.cfg.xml/Hibernate" uuid="bf15ec9b-75e4-4932-b0df-1266615ae4bc">
       <database-info product="MySQL" version="5.7.19" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
@@ -18,7 +19,7 @@
       </database-info>
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper" />
       <user-name>root</user-name>
-      <user-password>dfc0dfcedfc8dfc9df90dfc7dfd3dfd9dfdbdfc6df90df85df85dfc6dfc5dfc9dfcbdfc6dfc2dfc5dfd9dfdedf90df99df99df9adf9cdf85dfc7dfd3dfcbdfdadfda</user-password>
+      <introspection-schemas>*:myapp</introspection-schemas>
     </data-source>
     <data-source name="jdbc" uuid="79e42370-56db-4dac-a6dd-158ea5f34667">
       <database-info product="MySQL" version="5.7.19" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
@@ -27,8 +28,9 @@
       </database-info>
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper" />
       <user-name>root</user-name>
-      <user-password>df9bdf98df99df9edf9fdf9c</user-password>
+      <introspection-schemas>*:myapp</introspection-schemas>
       <resolve-scope>myapp:</resolve-scope>
+      <unqualified-resolve-schemas>myapp:</unqualified-resolve-schemas>
     </data-source>
   </component>
 </project>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <!DOCTYPE mapper PUBLIC   
+        "-//mybatis.org//DTD Mapper 3.0//EN"  
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--这块等于dao接口的实现 namespace必须和接口的类路径一样 -->
+<mapper namespace="com.yummy.dao.StudentMapper">
+	<!-- 为了返回list 类型而定义的returnMap -->
+	<resultMap type="com.yummy.model.Student" id="resultListStudent">
+		<result column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="age" property="age" />
+		<result column="sex" property="sex" />
+		<collection property="scheduleList" ofType="com.yummy.model.Schedule" >
+			<id property="studentId" column="student_id"  javaType="string" jdbcType="VARCHAR"/>
+			<association property="course" column="course_id" javaType="com.yummy.model.Course" >
+				<id property="id" column="course_id"  javaType="string" jdbcType="VARCHAR"/>
+				<result property="courseName" column="course_name"  javaType="string" jdbcType="VARCHAR"/>
+			</association>
+
+		</collection>
+	</resultMap>
+
+	<!-- findById必须和接口中的方法名一样 返回一个person 就是刚才的别名 如果不弄别名要连类路径一起写 麻烦 -->
+	<select id="findById" parameterType="HashMap" resultType="com.yummy.model.Student">
+		select
+		* from student where id=#{id}
+	</select>
+	<!-- getAllPerson接口中的方法名一样 返回list person-->
+	<select id="getStudentInfo" parameterType="string" resultMap="resultListStudent">
+		select
+		* from student s,schedule sh,course c WHERE s.id=sh.student_id and sh.course_id=c.id and s.id=#{id}
+	</select>
+
+</mapper> 
